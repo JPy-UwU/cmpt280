@@ -1,5 +1,5 @@
 import lib280.list.LinkedList280;
-import lib280.list.LinkedIterator280;
+
 public class Ship {
 
     // These are the name of the ships in Tractor Jack's fleet.  This is used ot initialize data for the assignemnt.
@@ -47,13 +47,11 @@ public class Ship {
         // The total weight of all sacks of grain on the ship (to be calculated)
         float totalWeight = 0;
 
-        // The linked list iterator to iterate through the sacks stored in linked list in this.cargo
-        LinkedIterator280<Sack> sackIterator = new LinkedIterator280<Sack>(this.cargo);
-
+        this.cargo.goFirst();
         // if the item exists in iterator list then the loop will add grain's weight to totalWeight and go to next item in linked list
-        while (sackIterator.itemExists()) {
-            totalWeight += sackIterator.item().getWeight();
-            sackIterator.goForth();
+        while (this.cargo.itemExists()) {
+            totalWeight += this.cargo.item().getWeight();
+            this.cargo.goForth();
         }
 
         // if totalWeight is less than or equal to the ship's capacity returns true, false otherwise
@@ -71,15 +69,14 @@ public class Ship {
         // The total number of sacks of particular type of grain on the ship (to be calculated)
         int grainType = 0;
 
-        // The linked list iterator to iterate through the sacks stored in linked list in this.cargo
-        LinkedIterator280<Sack> sackIterator = new LinkedIterator280<Sack>(this.cargo);
+        this.cargo.goFirst();
 
         // if the item exists in iterator list then the loop will increment grainType if item type matches type,
         // then go to next item in linked list
-        while (sackIterator.itemExists()) {
-            if(sackIterator.item().getType() == type)
+        while (this.cargo.itemExists()) {
+            if(this.cargo.item().getType() == type)
                 grainType++;
-            sackIterator.goForth();
+            this.cargo.goForth();
         }
 
         // returns the number of sacks of grain on this ship with a grain type equal to 'type'
