@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/asn1/asn1.iml" filepath="$PROJECT_DIR$/asn1/asn1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cmpt280.iml" filepath="$PROJECT_DIR$/cmpt280.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../Winter 2023/cmpt280/asn1/asn1_startercode/lib280-asn1/lib280-asn1.iml" filepath="$PROJECT_DIR$/../../Winter 2023/cmpt280/asn1/asn1_startercode/lib280-asn1/lib280-asn1.iml" />
+    </modules>
+  </component>
+</project>
