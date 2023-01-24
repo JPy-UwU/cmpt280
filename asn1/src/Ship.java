@@ -55,7 +55,7 @@ public class Ship {
         }
 
         // if totalWeight is less than or equal to the ship's capacity returns true, false otherwise
-        return totalWeight <= this.capacity;
+        return this.capacity < totalWeight;
     }
 
     /**
