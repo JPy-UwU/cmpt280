@@ -68,9 +68,22 @@ public class Ship {
      * @return The number of sacks of grain on this ship with a grain type equal to 'type'.
      */
     public int sacksOfGrainType(Grain type) {
-        // TODO: Implement this method.
+        // The total number of sacks of particular type of grain on the ship (to be calculated)
+        int grainType = 0;
 
-        return 0; // remove this line -- this is a temporary placeholder to avoid a compiler error.
+        // The linked list iterator to iterate through the sacks stored in linked list in this.cargo
+        LinkedIterator280<Sack> sackIterator = new LinkedIterator280<Sack>(this.cargo);
+
+        // if the item exists in iterator list then the loop will increment grainType if item type matches type,
+        // then go to next item in linked list
+        while (sackIterator.itemExists()) {
+            if(sackIterator.item().getType() == type)
+                grainType++;
+            sackIterator.goForth();
+        }
+
+        // returns the number of sacks of grain on this ship with a grain type equal to 'type'
+        return grainType;
     }
 
     // Accessor methods ...
