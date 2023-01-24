@@ -1,5 +1,5 @@
 import lib280.list.LinkedList280;
-
+import lib280.list.LinkedIterator280;
 public class Ship {
 
     // These are the name of the ships in Tractor Jack's fleet.  This is used ot initialize data for the assignemnt.
@@ -44,10 +44,20 @@ public class Ship {
      *         false otherwise.
      */
     public boolean isOverloaded() {
-        // TODO: Implement this method.
+        // The total weight of all sacks of grain on the ship (to be calculated)
+        float totalWeight = 0;
 
+        // The linked list iterator to iterate through the sacks stored in linked list in this.cargo
+        LinkedIterator280<Sack> sackIterator = new LinkedIterator280<Sack>(this.cargo);
 
-        return false; // remove this line -- this is a temporary placeholder to avoid a compiler error.
+        // if the item exists in iterator list then the loop will add grain's weight to totalWeight and go to next item in linked list
+        while (sackIterator.itemExists()) {
+            totalWeight += sackIterator.item().getWeight();
+            sackIterator.goForth();
+        }
+
+        // if totalWeight is less than or equal to the ship's capacity returns true, false otherwise
+        return totalWeight <= this.capacity;
     }
 
     /**
