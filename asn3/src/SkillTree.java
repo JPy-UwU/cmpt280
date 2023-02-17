@@ -106,6 +106,7 @@ public class SkillTree extends BasicMAryTree280<Skill> {
 		}
 		catch (RuntimeException e) {
 			// Expected output
+			System.out.println("Skill `YOHOHO` not found.");
 		}
 
 		System.out.println("Dependencies for Conqueror's: ");
@@ -120,6 +121,7 @@ public class SkillTree extends BasicMAryTree280<Skill> {
 		}
 		catch (RuntimeException e) {
 			// Expected output
+			System.out.println("Skill `YOHOHO` not found.");
 		}
 
 		System.out.println("Total cost for Conqueror's skill: " + op.skillTotalCost("Conqueror's"));
