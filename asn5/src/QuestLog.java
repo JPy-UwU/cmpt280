@@ -40,9 +40,18 @@ public class QuestLog extends KeyedChainedHashTable280<String, QuestLogEntry> {
 	 * @return The array of keys (quest names) from the quest log.
 	 */
 	public String[] keys() {
-		// TODO Implement this method.
+		String[] keyArray = new String[this.count];
+		int i = 0;
+
+		this.goFirst();
+
+		while (this.itemExists()) {
+			keyArray[i] = this.itemKey();
+			this.goForth();
+			i++;
+		}
 		
-		return null;  // Remove this line you're ready.  It's just to prevent compiler errors.
+		return keyArray;
 	}
 	
 	/**
