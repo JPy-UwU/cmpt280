@@ -47,7 +47,7 @@ public class QuestLog extends KeyedChainedHashTable280<String, QuestLogEntry> {
 		this.goFirst();
 
 		while (this.itemExists()) {
-			keyArray[i] = this.itemKey();
+			keyArray[i] = this.item().key();
 			this.goForth();
 			i++;
 		}
@@ -69,8 +69,8 @@ public class QuestLog extends KeyedChainedHashTable280<String, QuestLogEntry> {
 
 		String formattedQuestLog = "";
 
-		for (int i = 0; i < keyArray.length; i++)
-			formattedQuestLog += this.obtain(keyArray[i]) + "\n";
+		for (String s : keyArray)
+			formattedQuestLog += this.obtain(s) + "\n";
 
 		return formattedQuestLog;
 	}
@@ -84,7 +84,6 @@ public class QuestLog extends KeyedChainedHashTable280<String, QuestLogEntry> {
 	 *         Note: if no quest named k is found, then the first item of the pair should be null.
 	 */
 	public Pair280<QuestLogEntry, Integer> obtainWithCount(String k) {
-		// TODO Implement this method.
 		
 		// Write a method that returns a Pair280 which contains the quest log entry with name k, 
 		// and the number QuestLogEntry objects that were examined in the process.  You need to write
@@ -107,6 +106,8 @@ public class QuestLog extends KeyedChainedHashTable280<String, QuestLogEntry> {
 			// if quest is found, then return it
 			if (hashArray[keyPos].item().key().compareTo(k) == 0)
 				return new Pair280 <QuestLogEntry, Integer> (hashArray[keyPos].item(), counter);
+
+			hashArray[keyPos].goForth();
 		}
 
 		// quest was not found
@@ -129,7 +130,7 @@ public class QuestLog extends KeyedChainedHashTable280<String, QuestLogEntry> {
 		try {
 			//input filename on the next line - path must be relative to the working directory reported above.
 			// questLog/quests100000.csv
-			inFile = new CSVReader(new FileReader("asn5/quests100000.csv"));
+			inFile = new CSVReader(new FileReader("asn5/quests4.csv"));
 		} catch (FileNotFoundException e) {
 			System.out.println("Error: File not found.");
 			return;
@@ -167,22 +168,22 @@ public class QuestLog extends KeyedChainedHashTable280<String, QuestLogEntry> {
 	    // (call hashQuestLog.obtainWithCount() for each quest in the log and find average # of access)
 
 		String[] questList = hashQuestLog.keys();
-		double avg = 0;
+		double avg = 0.0;
 
-		for(int i = 0; i < questList.length; i++) {
-			Pair280<QuestLogEntry, Integer> p = hashQuestLog.obtainWithCount(questList[i]);
-			avg += p.secondItem();
-		}
+		for (String s : questList)
+			avg += hashQuestLog.obtainWithCount(s).secondItem();
 
-		System.out.println("Avg. # of items examined per query in the hashed quest log with " + questList.length + " entries: " + avg/questList.length);
+		avg = avg / questList.length;
+		System.out.println("Avg. # of items examined per query in the hashed quest log with " + questList.length + " entries: " + avg);
 
 	    // (call treeQuestLog.searchCount() for each quest in the log and find average # of access)
 
-		avg = 0;
+		avg = 0.0;
 
-		for(int i = 0; i < questList.length; i++)
-			avg += treeQuestLog.searchCount(hashQuestLog.obtain(questList[i]));
+		for (String s : questList)
+			avg += treeQuestLog.searchCount(hashQuestLog.obtain(s));
 
-		System.out.println("Avg. # of items examined per query in the tree quest log with " + questList.length + " entries: " + avg/questList.length);
+		avg = avg / questList.length;
+		System.out.println("Avg. # of items examined per query in the tree quest log with " + questList.length + " entries: " + avg);
 	}
 }

@@ -1,0 +1,6 @@
+Filename            Avg. Queries for hashQuestLog           Avg. Queries for treeQuestLog
+quests4.csv                     1.25                                    2.0
+quests16.csv
+quests250.csv
+quests1000.csv
+quests100000.csv
