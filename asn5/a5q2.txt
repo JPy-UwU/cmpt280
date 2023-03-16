@@ -1,6 +1,6 @@
 Filename            Avg. Queries for hashQuestLog           Avg. Queries for treeQuestLog
 quests4.csv                     1.25                                    2.0
-quests16.csv
-quests250.csv
-quests1000.csv
-quests100000.csv
+quests16.csv                    1.125                                   4.0
+quests250.csv                   1.232                                   13.34
+quests1000.csv                  2.148                                   18.08
+quests100000.csv                1.45367                                 30.8778

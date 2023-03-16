@@ -129,8 +129,7 @@ public class QuestLog extends KeyedChainedHashTable280<String, QuestLogEntry> {
 		CSVReader inFile;
 		try {
 			//input filename on the next line - path must be relative to the working directory reported above.
-			// questLog/quests100000.csv
-			inFile = new CSVReader(new FileReader("asn5/quests4.csv"));
+			inFile = new CSVReader(new FileReader("questLog/quests100000.csv"));
 		} catch (FileNotFoundException e) {
 			System.out.println("Error: File not found.");
 			return;
