@@ -6,7 +6,6 @@ import lib280.tree.OrderedSimpleTree280;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 // This project uses a JAR called opencsv which is a library for reading and
@@ -92,9 +91,26 @@ public class QuestLog extends KeyedChainedHashTable280<String, QuestLogEntry> {
 		// this method from scratch without using any of the superclass methods (mostly because
 		// the superclass methods won't be terribly useful unless you can modify them, which you
 		// aren't allowed to do!).  Except for hashPos().  You're allowed to use hashPos()!
-		
-	
-		return null;  // Remove this line when you're ready.  It's just to prevent compiler errors.
+
+		int keyPos = this.hashPos(k);
+		int counter = 0;
+
+		// check for empty log
+		if (hashArray[keyPos].isEmpty())
+			return new Pair280 <QuestLogEntry, Integer> (null, 0);
+
+		hashArray[keyPos].goFirst();
+
+		while (hashArray[keyPos].itemExists()) {
+			counter++;
+
+			// if quest is found, then return it
+			if (hashArray[keyPos].item().key().compareTo(k) == 0)
+				return new Pair280 <QuestLogEntry, Integer> (hashArray[keyPos].item(), counter);
+		}
+
+		// quest was not found
+		return new Pair280 <QuestLogEntry, Integer> (null, counter);
 	}
 	
 	
@@ -141,21 +157,32 @@ public class QuestLog extends KeyedChainedHashTable280<String, QuestLogEntry> {
 		
 		// Print out the hashed quest log's quests in alphabetical order.
 		// COMMENT THIS OUT when you're testing the file with 100,000 quests.  It takes way too long.
-		System.out.println(hashQuestLog);
+		// System.out.println(hashQuestLog);
 		
 		// Print out the lib280.tree quest log's quests in alphabetical order.
 		// COMMENT THIS OUT when you're testing the file with 100,000 quests.  It takes way too long.
-	    System.out.println(treeQuestLog.toStringInorder());
+	    // System.out.println(treeQuestLog.toStringInorder());
 		
 
-		// TODO Determine the average number of elements examined during access for hashed quest log.
 	    // (call hashQuestLog.obtainWithCount() for each quest in the log and find average # of access)
-		
-		
-		// TODO Determine the average number of elements examined during access for lib280.tree quest log.
+
+		String[] questList = hashQuestLog.keys();
+		double avg = 0;
+
+		for(int i = 0; i < questList.length; i++) {
+			Pair280<QuestLogEntry, Integer> p = hashQuestLog.obtainWithCount(questList[i]);
+			avg += p.secondItem();
+		}
+
+		System.out.println("Avg. # of items examined per query in the hashed quest log with " + questList.length + " entries: " + avg/questList.length);
+
 	    // (call treeQuestLog.searchCount() for each quest in the log and find average # of access)
-		
+
+		avg = 0;
+
+		for(int i = 0; i < questList.length; i++)
+			avg += treeQuestLog.searchCount(hashQuestLog.obtain(questList[i]));
+
+		System.out.println("Avg. # of items examined per query in the tree quest log with " + questList.length + " entries: " + avg/questList.length);
 	}
-	
-	
 }
