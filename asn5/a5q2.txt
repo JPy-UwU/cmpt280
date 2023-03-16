@@ -1,6 +1,17 @@
+Que. 1
+
 Filename            Avg. Queries for hashQuestLog           Avg. Queries for treeQuestLog
 quests4.csv                     1.25                                    2.0
 quests16.csv                    1.125                                   4.0
 quests250.csv                   1.232                                   13.34
 quests1000.csv                  2.148                                   18.08
 quests100000.csv                1.45367                                 30.8778
+
+Que. 2 -> log n
+
+Que. 3 -> n^2 log n
+
+Que. 4 -> treeQuestLog. Since checking keys stored in treeQuestLog is not required, it becomes much more efficient than
+          hashQuestLog because toString() iterates through tree inOrder.
+
+Que. 5 -> hashQuestLog. Since we can just call keys() and then iterate through them, without needing to search.
