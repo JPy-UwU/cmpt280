@@ -6,6 +6,8 @@ import lib280.tree.OrderedSimpleTree280;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 // This project uses a JAR called opencsv which is a library for reading and
 // writing CSV (comma-separated value) files.
@@ -61,10 +63,17 @@ public class QuestLog extends KeyedChainedHashTable280<String, QuestLogEntry> {
 	 * @return A nicely formatted quest log.
 	 */
 	public String toString() {
-		// TODO Implement this method.
-		
-		// Remove this following line when you're ready.  It's just to prevent compiler errors.
-		return "QuestLog.toString() not implemented yet!\n";  
+		String[] keyArray = this.keys();
+
+		// sorting array in alphabetical order by keys
+		Arrays.sort(keyArray);
+
+		String formattedQuestLog = "";
+
+		for (int i = 0; i < keyArray.length; i++)
+			formattedQuestLog += this.obtain(keyArray[i]) + "\n";
+
+		return formattedQuestLog;
 	}
 	
 	/**
@@ -103,7 +112,8 @@ public class QuestLog extends KeyedChainedHashTable280<String, QuestLogEntry> {
 		CSVReader inFile;
 		try {
 			//input filename on the next line - path must be relative to the working directory reported above.
-			inFile = new CSVReader(new FileReader("questLog/quests100000.csv"));
+			// questLog/quests100000.csv
+			inFile = new CSVReader(new FileReader("asn5/quests100000.csv"));
 		} catch (FileNotFoundException e) {
 			System.out.println("Error: File not found.");
 			return;
