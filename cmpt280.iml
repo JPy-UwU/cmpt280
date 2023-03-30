@@ -7,5 +7,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="lib280-asn3" exported="" />
     <orderEntry type="module" module-name="lib280-asn6" exported="" />
+    <orderEntry type="module" module-name="lib280-asn7" exported="" />
   </component>
 </module>
